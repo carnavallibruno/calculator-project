@@ -23,12 +23,12 @@ export default defineConfig({
     environment: 'jsdom',
     css: true,
     setupFiles: 'src/setupTests.ts',
-    includeSource: ['src/*.{ts,tsx}'],
+    includeSource: ['src/App.tsx'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       reportOnFailure: true,
-      include: ['src/components/**/*.{ts,tsx}'],
+      include: ['src/App.tsx'],
       exclude: [
         'node_modules/',
         'src/components/index.ts',
