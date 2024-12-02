@@ -60,7 +60,7 @@ describe("Calculator Component", () => {
     fireEvent.click(buttonPlus);
     fireEvent.click(buttonPlus);
     fireEvent.click(buttonEqual);
-    const resultElement = screen.getByText("Erro");
+    const resultElement = screen.getByText("= Erro");
     expect(resultElement).toBeInTheDocument();
   });
 
