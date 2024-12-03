@@ -1,4 +1,4 @@
-name: Run Tests and Analyze Coverage
+name: Run Vitest Tests and Coverage
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Run Unit Tests
+    name: Run Vitest Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -20,16 +20,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests
-        run: npm test -- --coverage
+      - name: Run Vitest Tests
+        run: npx vitest run --coverage
+
+      - name: Show Coverage Report
+        if: success()
+        run: cat coverage/lcov-report/index.html
 
       - name: Upload Coverage to Codecov
         if: success()
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: code-coverage-report
